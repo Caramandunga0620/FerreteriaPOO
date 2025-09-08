@@ -61,7 +61,7 @@ public void setpreuni(double preciouni) {
    this.preuni = preuni;
 }
 
-//Los métodos
+
 public double Total() {
    return cantidad * preciouni;
 }
