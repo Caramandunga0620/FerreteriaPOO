@@ -1,0 +1,9 @@
+package ferreteria;
+
+public class FerreteriaApp {
+	 public static void main(String[] args) {
+	        FerreteriaCliente cliente1 = new FerreteriaCliente("Fernando", "12345678");
+	        cliente1.comprar();
+	 }
+
+}
