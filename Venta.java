@@ -1,6 +1,8 @@
 package ferreteria;
 
 public class Venta {
+
+  
   private int iden;
   private String nombre;
   private String prod;
@@ -9,6 +11,7 @@ public class Venta {
 
 
 public Venta(int iden, String nombre; String prod; int cant; double preuni) { //El constructor
+  
   this.iden = iden;
   this.nombre = nombre;
   this.prod = prod;
