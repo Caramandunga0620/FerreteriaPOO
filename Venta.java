@@ -61,7 +61,7 @@ public void setpreuni(double preciouni) {
    this.preuni = preuni;
 }
 
-
+//Él método
 public double Total() {
    return cantidad * preciouni;
 }
@@ -71,14 +71,3 @@ public String toString() {
 }
 
 
-
-
-
-
-
-
-
-
-
-  
-  
