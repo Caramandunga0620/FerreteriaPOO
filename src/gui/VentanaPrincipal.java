@@ -92,7 +92,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         if (e.getSource() == btnAdicionar) {
             txtS.setText("Función Adicionar (pendiente)");
         } else if (e.getSource() == btnBuscar) {
-            txtS.setText("Función Buscar (pendiente)");
+            buscarVenta();
         } else if (e.getSource() == btnEliminar) {
             eliminarVenta();
         } else if (e.getSource() == btnModificar) {
@@ -136,6 +136,31 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 
     private void buscarVenta() {
         // TODO: Completar por Ced
+		String s = txtId.getText().trim();
+        if (s.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese ID a buscar");
+            return;
+        }
+        int id;
+        try {
+            id = Integer.parseInt(s);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "ID inválido (ingrese un número entero)");
+            return;
+        }
+
+        Venta v = av.buscar(id);
+        if (v == null) {
+            JOptionPane.showMessageDialog(this, "No se encontró venta con ID: " + id);
+        } else {
+            txtS.setText("Venta encontrada:\n" + 
+                         "ID: " + v.getIden() + "\n" +
+                         "Cliente: " + v.getNombre() + "\n" +
+                         "Producto: " + v.getProd() + "\n" +
+                         "Cantidad: " + v.getCant() + "\n" +
+                         "Precio: " + v.getPreuni() + "\n" +
+                         "Total: " + v.total());
+        }
     }
 
     private void modificarVenta() {
