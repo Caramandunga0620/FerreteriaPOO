@@ -1,73 +1,78 @@
 package ferreteria;
 
 public class Venta {
+    private int idVenta;
+    private String nombreCliente;
+    private String producto;
+    private int cantidad;
+    private double precioUnitario;
 
-  
-  private int iden;
-  private String nombre;
-  private String prod;
-  private int cant;
-  private double preuni;
+    // Constructor
+    public Venta(int idVenta, String nombreCliente, String producto, int cantidad, double precioUnitario) {
+        this.idVenta = idVenta;
+        this.nombreCliente = nombreCliente;
+        this.producto = producto;
+        this.cantidad = cantidad;
+        this.precioUnitario = precioUnitario;
+    }
 
+    // Getters y Setters
+    public int getIdVenta() {
+        return idVenta;
+    }
 
-public Venta(int iden; String nombre; String prod; int cant; double preuni) { //El constructor
-  
-  this.iden = iden;
-  this.nombre = nombre;
-  this.prod = prod;
-  this.cant = cant;
-  this.preuni = preuni;
+    public void setIdVenta(int idVenta) {
+        this.idVenta = idVenta;
+    }
 
-}
+    public String getNombreCliente() {
+        return nombreCliente;
+    }
 
-//Los get and setters
-public int getiden() {
-   return iden;
-}
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
+    }
 
-public void setiden;(int Identificador) {
-   this.iden = iden;
-}
+    public String getProducto() {
+        return producto;
+    }
 
-public String nombre() {
-   return nombre;
-}
+    public void setProducto(String producto) {
+        this.producto = producto;
+    }
 
-public void setnombre(String nombre) {
-   this.nombre = nombre;  
-}
+    public int getCantidad() {
+        return cantidad;
+    }
 
-public String prod() {
-   return prod;
-}
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
 
-public void setprod(String producto) {
-   this.prod = prod;
-}
+    public double getPrecioUnitario() {
+        return precioUnitario;
+    }
 
-public int getcant() {
-   return cant;
-}
+    public void setPrecioUnitario(double precioUnitario) {
+        this.precioUnitario = precioUnitario;
+    }
 
-public void setcant(int cantidad) {
-   this.cantidad = cantidad;
-}
+    
+    public double calcularTotal() {
+        return cantidad * precioUnitario;
+    }
 
-public double getpreuni() {
-   return preuni;
-}
-
-public void setpreuni(double preciouni) {
-   this.preuni = preuni;
-}
-
-//Él método
-public double Total() {
-   return cantidad * preciouni;
-}
-
-public String toString() {
-   return producto + " x " + cantidad + " = S/." + Total();
+    
+    public String toString() {
+        return "Venta {" +
+                "ID=" + idVenta +
+                ", Cliente='" + nombreCliente + '\'' +
+                ", Producto='" + producto + '\'' +
+                ", Cantidad=" + cantidad +
+                ", Precio Unitario=" + precioUnitario +
+                ", Total=" + calcularTotal() +
+                '}';
+    }
 }
 
 
