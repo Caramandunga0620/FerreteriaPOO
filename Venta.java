@@ -10,7 +10,7 @@ public class Venta {
   private double preuni;
 
 
-public Venta(int iden, String nombre; String prod; int cant; double preuni) { //El constructor
+public Venta(int iden; String nombre; String prod; int cant; double preuni) { //El constructor
   
   this.iden = iden;
   this.nombre = nombre;
@@ -50,7 +50,7 @@ public int getcant() {
 }
 
 public void setcant(int cantidad) {
-   this.cantidad = cantidad
+   this.cantidad = cantidad;
 }
 
 public double getpreuni() {
