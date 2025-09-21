@@ -90,7 +90,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnAdicionar) {
-            txtS.setText("Función Adicionar (pendiente)");
+            adicionarVenta();
         } else if (e.getSource() == btnBuscar) {
             buscarVenta();
         } else if (e.getSource() == btnEliminar) {
@@ -132,8 +132,50 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
     }
     private void adicionarVenta() {
         // TODO: Completar por Humber
-    }
+    	    String sId = txtId.getText().trim();
+    	    String nombre = txtNombre.getText().trim();
+    	    String prod = txtProd.getText().trim();
+    	    String sCant = txtCant.getText().trim();
+    	    String sPreuni = txtPrecio.getText().trim();
 
+    	    if (sId.isEmpty() || nombre.isEmpty() || prod.isEmpty() ||
+    	        sCant.isEmpty() || sPreuni.isEmpty()) {
+    	        JOptionPane.showMessageDialog(this, "Complete todos los campos");
+    	        return;
+    	    }
+
+    	    int id, cant;
+    	    double preuni;
+    	    try {
+    	        id = Integer.parseInt(sId);
+    	        cant = Integer.parseInt(sCant);
+    	        preuni = Double.parseDouble(sPreuni);
+    	    } catch (NumberFormatException e) {
+    	        JOptionPane.showMessageDialog(this, "ID, Cantidad y Precio deben ser numéricos válidos");
+    	        return;
+    	    }
+
+    	    Venta vExistente = av.buscar(id);
+    	    if (vExistente != null) {
+    	        JOptionPane.showMessageDialog(this, "Ya existe una venta con el ID: " + id);
+    	        return;
+    	    }
+
+    	    Venta v = new Venta(id, nombre, prod, cant, preuni);
+    	    av.adicionar(v);
+    	    JOptionPane.showMessageDialog(this, "Venta registrada correctamente");
+
+    	    reportarVentas();
+
+    	    txtId.setText("");
+    	    txtNombre.setText("");
+    	    txtProd.setText("");
+    	    txtCant.setText("");
+    	    txtPrecio.setText("");
+    	    txtId.requestFocus();
+    	}
+
+ 
     private void buscarVenta() {
         // TODO: Completar por Ced
 		String s = txtId.getText().trim();
