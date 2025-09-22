@@ -104,30 +104,47 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 
     private void eliminarVenta() {
         String s = txtId.getText().trim();
+        
+        // Validar que no esté vacío
         if (s.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ingrese ID a eliminar");
+            JOptionPane.showMessageDialog(this, "Ingrese un ID para eliminar");
             return;
         }
+
         int id;
         try {
-            id = Integer.parseInt(s);
+            id = Integer.parseInt(s); // Validar que sea número
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "ID inválido (ingresa un número entero)");
+            JOptionPane.showMessageDialog(this, "ID inválido (ingrese un número entero)");
             return;
         }
 
+        // Validar que el ID sea positivo
+        if (id <= 0) {
+            JOptionPane.showMessageDialog(this, "El ID debe ser mayor que 0");
+            return;
+        }
+
+        // Buscar la venta en el arreglo
         Venta v = av.buscar(id);
         if (v == null) {
-            JOptionPane.showMessageDialog(this, "No se encontró venta con ID: " + id);
+            JOptionPane.showMessageDialog(this, "No se encontró ninguna venta con ID: " + id);
             return;
         }
 
-        int r = JOptionPane.showConfirmDialog(this, "¿Eliminar esta venta?\n" + v.toString(),
-                "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+        // Confirmación antes de eliminar
+        int r = JOptionPane.showConfirmDialog(
+                this,
+                "¿Está seguro de eliminar esta venta?\n" + v.toString(),
+                "Confirmar eliminación",
+                JOptionPane.YES_NO_OPTION
+        );
+
         if (r == JOptionPane.YES_OPTION) {
             av.eliminar(v);
             JOptionPane.showMessageDialog(this, "Venta eliminada correctamente");
-            reportarVentas();
+            reportarVentas(); // Refresca la tabla o listado
+            txtId.setText(""); // Limpia el campo después de eliminar
         }
     }
     private void adicionarVenta() {
