@@ -105,7 +105,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
     private void eliminarVenta() {
         String s = txtId.getText().trim();
         
-        // Validar que no esté vacío
         if (s.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Ingrese un ID para eliminar");
             return;
@@ -113,26 +112,23 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 
         int id;
         try {
-            id = Integer.parseInt(s); // Validar que sea número
+            id = Integer.parseInt(s); 
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "ID inválido (ingrese un número entero)");
             return;
         }
 
-        // Validar que el ID sea positivo
         if (id <= 0) {
             JOptionPane.showMessageDialog(this, "El ID debe ser mayor que 0");
             return;
         }
 
-        // Buscar la venta en el arreglo
         Venta v = av.buscar(id);
         if (v == null) {
             JOptionPane.showMessageDialog(this, "No se encontró ninguna venta con ID: " + id);
             return;
         }
 
-        // Confirmación antes de eliminar
         int r = JOptionPane.showConfirmDialog(
                 this,
                 "¿Está seguro de eliminar esta venta?\n" + v.toString(),
@@ -143,54 +139,53 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         if (r == JOptionPane.YES_OPTION) {
             av.eliminar(v);
             JOptionPane.showMessageDialog(this, "Venta eliminada correctamente");
-            reportarVentas(); // Refresca la tabla o listado
-            txtId.setText(""); // Limpia el campo después de eliminar
+            reportarVentas(); 
+            txtId.setText(""); 
         }
     }
     private void adicionarVenta() {
-        // TODO: Completar por Humber
-    	    String sId = txtId.getText().trim();
-    	    String nombre = txtNombre.getText().trim();
-    	    String prod = txtProd.getText().trim();
-    	    String sCant = txtCant.getText().trim();
-    	    String sPreuni = txtPrecio.getText().trim();
+        String sId = txtId.getText().trim();
+        String nombre = txtNombre.getText().trim();
+        String prod = txtProd.getText().trim();
+        String sCant = txtCant.getText().trim();
+        String sPreuni = txtPrecio.getText().trim();
 
-    	    if (sId.isEmpty() || nombre.isEmpty() || prod.isEmpty() ||
-    	        sCant.isEmpty() || sPreuni.isEmpty()) {
-    	        JOptionPane.showMessageDialog(this, "Complete todos los campos");
-    	        return;
-    	    }
+        if (sId.isEmpty() || nombre.isEmpty() || prod.isEmpty() ||
+            sCant.isEmpty() || sPreuni.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Complete todos los campos");
+            return;
+        }
 
-    	    int id, cant;
-    	    double preuni;
-    	    try {
-    	        id = Integer.parseInt(sId);
-    	        cant = Integer.parseInt(sCant);
-    	        preuni = Double.parseDouble(sPreuni);
-    	    } catch (NumberFormatException e) {
-    	        JOptionPane.showMessageDialog(this, "ID, Cantidad y Precio deben ser numéricos válidos");
-    	        return;
-    	    }
+        int id, cant;
+        double preuni;
+        try {
+            id = Integer.parseInt(sId);
+            cant = Integer.parseInt(sCant);
+            preuni = Double.parseDouble(sPreuni);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "ID, Cantidad y Precio deben ser numéricos válidos");
+            return;
+        }
 
-    	    Venta vExistente = av.buscar(id);
-    	    if (vExistente != null) {
-    	        JOptionPane.showMessageDialog(this, "Ya existe una venta con el ID: " + id);
-    	        return;
-    	    }
+        Venta vExistente = av.buscar(id);
+        if (vExistente != null) {
+            JOptionPane.showMessageDialog(this, "Ya existe una venta con el ID: " + id);
+            return;
+        }
 
-    	    Venta v = new Venta(id, nombre, prod, cant, preuni);
-    	    av.adicionar(v);
-    	    JOptionPane.showMessageDialog(this, "Venta registrada correctamente");
+        Venta v = new Venta(id, nombre, prod, cant, preuni);
+        av.adicionar(v);
+        JOptionPane.showMessageDialog(this, "Venta registrada correctamente");
 
-    	    reportarVentas();
+        reportarVentas();
 
-    	    txtId.setText("");
-    	    txtNombre.setText("");
-    	    txtProd.setText("");
-    	    txtCant.setText("");
-    	    txtPrecio.setText("");
-    	    txtId.requestFocus();
-    	}
+        txtId.setText("");
+        txtNombre.setText("");
+        txtProd.setText("");
+        txtCant.setText("");
+        txtPrecio.setText("");
+        txtId.requestFocus();
+    }
 
  
     private void buscarVenta() {
