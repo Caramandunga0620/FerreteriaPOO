@@ -1,14 +1,20 @@
 package Clase;
 
 public class Producto {
-	private String nombre;
+    private String nombre;
     private double precio;
     private int stock;
 
+    // Constructor principal
     public Producto(String nombre, double precio, int stock) {
         this.nombre = nombre;
         this.precio = precio;
         this.stock = stock;
+    }
+
+    // Sobrecarga de constructor (solo nombre y precio, stock por defecto en 0)
+    public Producto(String nombre, double precio) {
+        this(nombre, precio, 0);
     }
 
     public String getNombre() {
@@ -22,7 +28,7 @@ public class Producto {
     }
 
     public void vender(int cantidad) {
-        if (cantidad <= stock) {
+        if (cantidad > 0 && cantidad <= stock) {
             stock -= cantidad;
             System.out.println("Se vendieron " + cantidad + " unidades de " + nombre);
         } else {
@@ -38,10 +44,13 @@ public class Producto {
 
     public static void main(String[] args) {
         Producto p1 = new Producto("Martillo", 35.5, 10);
+        Producto p2 = new Producto("Clavos", 5.0);
 
         p1.mostrarInfo();
         p1.vender(3);
         p1.mostrarInfo();
         p1.vender(15); 
+
+        p2.mostrarInfo();
     }
 }
